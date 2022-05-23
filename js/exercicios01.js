@@ -33,41 +33,47 @@ function imc() {
     //imc calculator
     let peso = document.getElementById('inputPeso').value;
     let altura = document.getElementById('inputAltura').value;
-    let imc = peso / (altura * altura);
+    let imcCalculo= peso / (altura * altura);
     let imcResult = document.getElementById('inputIMC');
-    imcResult.value = imc.toFixed(2);
+    imcResult.value = imcCalculo.toFixed(2);
 
     //style imc result
-    if (imc < 18.5) {
-        imcResult.style.backgroundColor = '#F8CA2E';
-        imcResult.style.color = 'black';
-        imcResult.style.fontSize = '14px';
-        imcResult.style.fontFamily = 'Arial';
-        imcResult.style.fontWeight = 'bold';
-    } else if (imc >= 18.5 && imc <= 24.9) {
-        imcResult.style.backgroundColor = '#7ADC54';
-        imcResult.style.color = 'black';
-        imcResult.style.fontSize = '14px';
-        imcResult.style.fontFamily = 'Arial';
-        imcResult.style.fontWeight = 'bold';
-    } else if (imc >= 25 && imc <= 29.9) {
-        imcResult.style.backgroundColor = '#F8CA2E';
-        imcResult.style.color = 'black';
-        imcResult.style.fontSize = '14px';
-        imcResult.style.fontFamily = 'Arial';
-        imcResult.style.fontWeight = 'bold';
-    } else if (imc >= 30 && imc <= 39.9) {
-        imcResult.style.backgroundColor = '#C75413';
-        imcResult.style.color = 'white';
-        imcResult.style.fontSize = '14px';
-        imcResult.style.fontFamily = 'Arial';
-        imcResult.style.fontWeight = 'bold';
-    } else if (imc >= 40) {
-        imcResult.style.backgroundColor = '#D41314';
-        imcResult.style.color = 'white';
-        imcResult.style.fontSize = '14px';
-        imcResult.style.fontFamily = 'Arial';
-        imcResult.style.fontWeight = 'bold';
+    switch (true) {
+        case (imcCalculo < 18.5):
+            document.getElementById('inputIMC').style.backgroundColor = '#F8CA2E';
+            imcResult.style.fontSize = '14px';
+            imcResult.style.fontFamily = 'Arial';
+            imcResult.style.fontWeight = 'bold';
+            imcResult.style.color = 'black';
+            break;
+        case (imcCalculo >= 18.5 && imcCalculo < 25):
+            document.getElementById('inputIMC').style.backgroundColor = '#4CAF50';
+            imcResult.style.fontSize = '14px';
+            imcResult.style.fontFamily = 'Arial';
+            imcResult.style.fontWeight = 'bold';
+            imcResult.style.color = 'black';
+            break;
+        case (imcCalculo >= 25 && imcCalculo < 30):
+            document.getElementById('inputIMC').style.backgroundColor = '#FFC107';
+            imcResult.style.fontSize = '14px';
+            imcResult.style.fontFamily = 'Arial';
+            imcResult.style.fontWeight = 'bold';
+            imcResult.style.color = 'black';
+            break;
+        case (imcCalculo >= 30 && imcCalculo < 35):
+            document.getElementById('inputIMC').style.backgroundColor = '#C75413';
+            imcResult.style.fontSize = '14px';
+            imcResult.style.fontFamily = 'Arial';
+            imcResult.style.fontWeight = 'bold';
+            imcResult.style.color = 'white';
+            break;
+        case (imcCalculo >= 40):
+            document.getElementById('inputIMC').style.backgroundColor = '#D41314';
+            imcResult.style.fontSize = '14px';
+            imcResult.style.fontFamily = 'Arial';
+            imcResult.style.fontWeight = 'bold';
+            imcResult.style.color = 'white';
+            break;
     }
 
 }
@@ -97,16 +103,16 @@ function tabelaCarros(carros) {
 
     //create table body
     let body = table.createTBody();
-    for (let i = 0; i < carros.length; i++) {
-        let row = body.insertRow();
-        let name = row.insertCell();
-        let model = row.insertCell();
-        let plate = row.insertCell();
-        let price = row.insertCell();
-        name.innerHTML = carros[i].marca;
-        model.innerHTML = carros[i].modelo;
-        plate.innerHTML = carros[i].emplacamentos;
-        price.innerHTML = carros[i].preco;
+    for (const element of carros) {
+        let row2 = body.insertRow();
+        let name = row2.insertCell();
+        let model = row2.insertCell();
+        let plate = row2.insertCell();
+        let price = row2.insertCell();
+        name.innerHTML = element.marca;
+        model.innerHTML = element.modelo;
+        plate.innerHTML = element.emplacamentos;
+        price.innerHTML = element.preco;
     }
 
     //style table
@@ -158,16 +164,16 @@ function tabelaCarrosMaisEmplacados(carros) {
             return -1;
         };
     });
-    for (let i = 0; i < orderedCarros.length; i++) {
-        let row = body.insertRow();
-        let name = row.insertCell();
-        let model = row.insertCell();
-        let plate = row.insertCell();
-        let price = row.insertCell();
-        name.innerHTML = orderedCarros[i].marca;
-        model.innerHTML = orderedCarros[i].modelo;
-        plate.innerHTML = orderedCarros[i].emplacamentos;
-        price.innerHTML = orderedCarros[i].preco;
+    for (const element of orderedCarros) {
+        let row2 = body.insertRow();
+        let name = row2.insertCell();
+        let model = row2.insertCell();
+        let plate = row2.insertCell();
+        let price = row2.insertCell();
+        name.innerHTML = element.marca;
+        model.innerHTML = element.modelo;
+        plate.innerHTML = element.emplacamentos;
+        price.innerHTML = element.preco;
     }
 
     //style table
@@ -216,19 +222,19 @@ function tabelaCarrosIpva(carros) {
 
     //create table body with cars on array
     let body = table.createTBody();
-    for (let i = 0; i < carros.length; i++) {
-        let row = body.insertRow();
-        let name = row.insertCell();
-        let model = row.insertCell();
-        let plate = row.insertCell();
-        let price = row.insertCell();
-        let ipva = row.insertCell();
-        name.innerHTML = carros[i].marca;
-        model.innerHTML = carros[i].modelo;
-        plate.innerHTML = carros[i].emplacamentos;
-        price.innerHTML = carros[i].preco;
+    for (const element of carros) {
+        let row2 = body.insertRow();
+        let name = row2.insertCell();
+        let model = row2.insertCell();
+        let plate = row2.insertCell();
+        let price = row2.insertCell();
+        let ipva = row2.insertCell();
+        name.innerHTML = element.marca;
+        model.innerHTML = element.modelo;
+        plate.innerHTML = element.emplacamentos;
+        price.innerHTML = element.preco;
 
-        let ipvaValue = carros[i].preco * 0.02;
+        let ipvaValue = element.preco * 0.02;
 
         ipva.innerHTML = ipvaValue.toFixed(2);
     }
